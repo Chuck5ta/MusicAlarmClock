@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "wIIQLCEHXvDNZ6vqmd+jHDLJq5w83kxbxFnx/7rRvyq07JezfnxP2HyUdX1NF/6A3RVwxLOVnjmR96s6kKomrQ==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\APP Developer\\MusicAlarmClock\\MusicAlarmClock\\MusicAlarmClock\\MusicAlarmClock.iOS\\MusicAlarmClock.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.8.0.1451\\xamarin.forms.4.8.0.1451.nupkg.sha512"
+  ],
+  "logs": []
+}
