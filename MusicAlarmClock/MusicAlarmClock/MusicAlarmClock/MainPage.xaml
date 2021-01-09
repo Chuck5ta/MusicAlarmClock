@@ -17,7 +17,8 @@
         </Grid.ColumnDefinitions>
 
         <!-- Title -->
-        <Label  Grid.Row="0"
+        <Label  x:Name="titleLabel"
+                Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Text="Music Alarm Clock" 
@@ -26,12 +27,62 @@
                 FontSize="28"
                 />
 
-
         <!-- Time input box -->
+        <StackLayout Margin="20"
+                     Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     Grid.Row="1" Grid.Column="0" 
+                     Grid.ColumnSpan="2">
+            <Entry 
+                x:Name="entryHourTens"
+                Placeholder="0" 
+                TextColor="Black" 
+                FontSize="60"
+                MaxLength="1"
+                Keyboard="Numeric"
+                TextChanged="OnHourEntryTensTextChanged" 
+                Completed="OnEntryCompleted" />
+            <Entry 
+                x:Name="entryHourUnits"
+                Placeholder="0" 
+                TextColor="Black" 
+                FontSize="60"
+                MaxLength="1"
+                Keyboard="Numeric"
+                TextChanged="OnHourEntryUnitsTextChanged" 
+                Completed="OnEntryCompleted" />
+            <Label 
+                Text=":" 
+                HorizontalTextAlignment="Center" 
+                TextColor="Black" 
+                FontSize="60"/>
+            <Entry      
+                Placeholder="0"
+                TextColor="Black" 
+                FontSize="60"
+                MaxLength="1"
+                Keyboard="Numeric"
+                TextChanged="OnMinutesEntryTensTextChanged" 
+                Completed="OnEntryCompleted" />
+            <Entry 
+                Placeholder="0" 
+                TextColor="Black" 
+                FontSize="60"
+                MaxLength="1"
+                Keyboard="Numeric"
+                Completed="OnEntryCompleted" />
+        </StackLayout>
 
+
+        <!--     <Editor Grid.Row="1" Grid.Column="0" 
+                Grid.ColumnSpan="2"
+                Placeholder="Enter multi-line text here"
+                HeightRequest="10" />
+-->
 
         <!-- Set alarm button -->
-        <Button Grid.Row="2" Grid.Column="0" 
+        <Button x:Name="setAlarmButton"
+                Grid.Row="2" Grid.Column="0" 
                 Grid.ColumnSpan="2"
                 Text="Set Alarm Time"
                 TextColor="White" 
@@ -40,19 +91,21 @@
                 Command="{Binding StartCommand}"/>
 
         <!-- Start button -->
-        <Button Grid.Row="3" Grid.Column="0" Text="Start"
+        <Button x:Name="startAlarmButton"
+                Grid.Row="3" Grid.Column="0" Text="Start"
                 TextColor="White" 
                 BackgroundColor="Green"
                 Margin="20"
-                Command="{Binding StartCommand}"/>
+                Clicked="OnStartButtonClicked"/>
 
         <!-- Stop button -->
-        <Button Grid.Row="3" Grid.Column="1" Text="Stop"
+        <Button x:Name="stopAlarmButton"
+                Grid.Row="3" Grid.Column="1" Text="Stop"
                 TextColor="White" 
                 BackgroundColor="Red"
                 Margin="20"
-                Command="{Binding StopCommand}"/>
-        
+                Clicked="OnStopButtonClicked"/>
+
 
     </Grid>
 
