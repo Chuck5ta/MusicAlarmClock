@@ -12,7 +12,6 @@ namespace MusicAlarmClock
     public partial class MainPage : ContentPage
     {
         private bool runTimer = true;
-        private bool successfullInput;
 
         public MainPage()
         {
@@ -21,121 +20,125 @@ namespace MusicAlarmClock
 
         void OnHourEntryTensTextChanged(object sender, TextChangedEventArgs e)
         {
-            DateTime localDate = DateTime.Now;
+            if (e.NewTextValue == "") //nothing to check
+                return;
+            //   DateTime localDate = DateTime.Now;
 
-            successfullInput = true;
-
-            string oldText = e.OldTextValue;
             string newText = e.NewTextValue;
             ((Entry)sender).Text = newText;
-            if (newText != "")
-            {
-                int hoursTens = Convert.ToInt32(newText);
-                int hoursUnits = Convert.ToInt32(entryHourUnits.Text);
 
-                // if Units is > 3 - then 0
-                if (hoursUnits > 3)
-                {
-                    // 0 or 1 is allowed
-                    if (hoursTens > 1)
-                    {
-                        // invalid entry, set it back to the original value!
-                        ((Entry)sender).Text = "0";
-                        successfullInput = false;
-                    }
-                    else
-                        entryHourUnits.Focus();
-                }
-                // Tens can only be 0, 1 or 2
-                else if (hoursTens > 2)
-                {
-                    // invalid entry, set it back to the original value!
-                    ((Entry)sender).Text = "0";
-                    successfullInput = false;
-                    titleLabel.Text = successfullInput.ToString();
-                }
-                // if Units is > 1 - then allow 2
-                else if (hoursUnits > 1) // it's 2
-                {
-                    if (hoursTens > 2) // must be 0, 1 or 2
-                    {
-                       // invalid entry, set it back to the original value!
-                       ((Entry)sender).Text = "0";
-                       successfullInput = false;
-                    }
-                    else
-                       entryHourUnits.Focus();
-                }
-                else // Tens is 0
-                    entryHourUnits.Focus();
+            int hoursTens = Convert.ToInt32(newText);
+            int hoursUnits = Convert.ToInt32(entryHourUnits.Text);
+
+            // if Units is > 3 - then 0
+            if (hoursUnits > 3 && hoursTens > 1)
+            {
+                // 0 or 1 is allowed for units
+                ((Entry)sender).Text = "0";
             }
+            // Tens can only be 0, 1 or 2
+            else if (hoursTens > 2)
+            {
+                ((Entry)sender).Text = "0";
+            }
+            //  if (!successfulInput)
+            //     entryHourTens.Focus();
+        }
+
+        private void OnHourTensEntry_Unfocused(object sender, EventArgs e)
+        {
+            if (entryHourTens.Text == "")
+                entryHourTens.Text = "0";
         }
 
         void OnHourEntryUnitsTextChanged(object sender, TextChangedEventArgs e)
         {
-            string oldText = e.OldTextValue;
+            if (e.NewTextValue == "") //nothing to check
+                return;
+
+            //string oldText = e.OldTextValue;
             string newText = e.NewTextValue;
             ((Entry)sender).Text = newText;
-            if (newText != "")
+
+            int hoursUnits = Convert.ToInt32(newText);
+            int hoursTens = Convert.ToInt32(entryHourTens.Text);
+             
+            if (hoursTens == 2 && hoursUnits > 3)
             {
-                int hoursUnits = Convert.ToInt32(newText);
-                int hoursTens = Convert.ToInt32(entryHourTens.Text);
-                //entryHourTens
-                // if tens is 1
-                if (hoursTens == 1)
-                {
-                    if (hoursUnits > 2)
-                    {
-                        // invalid entry, set it back to the original value!
-                        ((Entry)sender).Text = oldText;
-                    }
-                }
-                else if (hoursTens == 2)
-                {
-                    // if tens is 2
-                    if (hoursUnits > 3)
-                    {
-                        // invalid entry, set it back to the original value!
-                        ((Entry)sender).Text = oldText;
-                    }
-                }
-                // else it'll be 0, therefore 0 to 9 is allowed
+                // 24 hour clock goes from 0 to 23
+                ((Entry)sender).Text = "0";
             }
+            // else it'll be 0 or 1, therefore 0 to 9 is allowed
         }
-        void OnEntryTextChanged(object sender, TextChangedEventArgs e)
+
+        private void OnHourUnitsEntry_Unfocused(object sender, EventArgs e)
         {
-            string oldText = e.OldTextValue;
-            string newText = e.NewTextValue;
-            ((Entry)sender).Text = newText;
-            if (newText != "")
-            {
-                int hours = Convert.ToInt32(newText);
-                if (hours > 3)
-                {
-                    // invalid entry, set it back to the original value!
-                    ((Entry)sender).Text = oldText;
-                }
-            }
+            if (entryHourUnits.Text == "")
+                entryHourUnits.Text = "0";
         }
+
         void OnMinutesEntryTensTextChanged(object sender, TextChangedEventArgs e)
         {
-            string oldText = e.OldTextValue;
+            if (e.NewTextValue == "") //nothing to check
+                return;
+
+            //string oldText = e.OldTextValue;
             string newText = e.NewTextValue;
             ((Entry)sender).Text = newText;
-            if (newText != "")
+
+            int hours = Convert.ToInt32(newText);
+            if (hours > 5)
             {
-                int hours = Convert.ToInt32(newText);
-                if (hours > 5)
-                {
-                    // invalid entry, set it back to the original value!
-                    ((Entry)sender).Text = oldText;
-                }
+                // 0 to 5 only (0 to 50 minutes for 10s of minutes)
+                ((Entry)sender).Text = "0";
             }
         }
 
-        void OnEntryCompleted(object sender, EventArgs e)
+        void OnMinutesEntryTensCompleted(object sender, EventArgs e)
         {
-            string text = ((Entry)sender).Text;
+            if (entryMinutesTens.Text == "")
+                entryMinutesTens.Text = "0";
+        }
+
+        private void OnMinutesTensEntry_Unfocused(object sender, EventArgs e)
+        {
+            if (entryMinutesTens.Text == "")
+                entryMinutesTens.Text = "0";
+        }
+
+        void OnMinutesUnitsEntryCompleted(object sender, EventArgs e)
+        {
+            if (entryMinutesUnits.Text == "")
+                entryMinutesUnits.Text = "0";
+        }
+
+        private void OnMinutesUnitsEntry_Unfocused(object sender, EventArgs e)
+        {
+            if (entryMinutesUnits.Text == "")
+                entryMinutesUnits.Text = "0";
+        }
+
+        void OnSetAlarmButtonClicked(object sender, EventArgs e)
+        {
+            int val1 = 1;
+            int bob = 0;
+            bool successfulInput = true;
+
+            titleLabel.Text = successfulInput.ToString();
+
+            if (val1 == 1)
+            {
+                if (bob == 0)
+                {
+                    successfulInput = false;
+                }
+            }
+
+            lblTest.Text = successfulInput.ToString();
+
+            if (successfulInput)
+                lblTest.Text = "Successful Imput!";
+
         }
 
         void OnStartButtonClicked(object sender, EventArgs e)
@@ -177,6 +180,9 @@ namespace MusicAlarmClock
             });
         }
 
+        private void entryMinutesUnits_Unfocused(object sender, FocusEventArgs e)
+        {
 
+        }
     }
 }

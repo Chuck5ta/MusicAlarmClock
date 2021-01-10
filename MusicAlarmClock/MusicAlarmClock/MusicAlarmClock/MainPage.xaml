@@ -10,6 +10,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -35,42 +36,46 @@
                      Grid.ColumnSpan="2">
             <Entry 
                 x:Name="entryHourTens"
-                Placeholder="0" 
+                Text="0"
                 TextColor="Black" 
                 FontSize="60"
                 MaxLength="1"
                 Keyboard="Numeric"
                 TextChanged="OnHourEntryTensTextChanged" 
-                Completed="OnEntryCompleted" />
+                Unfocused="OnHourTensEntry_Unfocused" />
             <Entry 
                 x:Name="entryHourUnits"
-                Placeholder="0" 
+                Text="0"
                 TextColor="Black" 
                 FontSize="60"
                 MaxLength="1"
                 Keyboard="Numeric"
                 TextChanged="OnHourEntryUnitsTextChanged" 
-                Completed="OnEntryCompleted" />
+                Unfocused="OnHourUnitsEntry_Unfocused" />
             <Label 
                 Text=":" 
                 HorizontalTextAlignment="Center" 
                 TextColor="Black" 
                 FontSize="60"/>
-            <Entry      
-                Placeholder="0"
+            <Entry   
+                x:Name="entryMinutesTens"   
+                Text="0"
                 TextColor="Black" 
                 FontSize="60"
                 MaxLength="1"
                 Keyboard="Numeric"
                 TextChanged="OnMinutesEntryTensTextChanged" 
-                Completed="OnEntryCompleted" />
+                Completed="OnMinutesEntryTensCompleted"
+                Unfocused="OnMinutesTensEntry_Unfocused" />
             <Entry 
-                Placeholder="0" 
+                x:Name="entryMinutesUnits"   
+                Text="0"
                 TextColor="Black" 
                 FontSize="60"
                 MaxLength="1"
-                Keyboard="Numeric"
-                Completed="OnEntryCompleted" />
+                Keyboard="Numeric" 
+                Completed="OnMinutesUnitsEntryCompleted"
+                Unfocused="OnMinutesUnitsEntry_Unfocused" />
         </StackLayout>
 
 
@@ -88,7 +93,7 @@
                 TextColor="White" 
                 BackgroundColor="Purple"
                 Margin="40"
-                Command="{Binding StartCommand}"/>
+                Clicked="OnSetAlarmButtonClicked"/>
 
         <!-- Start button -->
         <Button x:Name="startAlarmButton"
@@ -105,6 +110,16 @@
                 BackgroundColor="Red"
                 Margin="20"
                 Clicked="OnStopButtonClicked"/>
+
+        <Label  x:Name="lblTest"
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Text="Music Alarm Clock" 
+                HorizontalTextAlignment="Center" 
+                TextColor="Black" 
+                FontSize="28"
+                />
 
 
     </Grid>
