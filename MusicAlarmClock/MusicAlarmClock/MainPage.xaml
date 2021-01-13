@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicAlarmClock.MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Title -->
+        <Label  x:Name="titleLabel"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Text="Music Alarm Clock" 
+                HorizontalTextAlignment="Center" 
+                TextColor="Black" 
+                FontSize="28"
+                />
+
+        <!-- Time input box -->
+        <StackLayout Margin="20"
+                     Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     Grid.Row="1" Grid.Column="0" 
+                     Grid.ColumnSpan="2">
+            <Entry 
+                x:Name="entryHourTens"
+                Text="0"
+                TextColor="Black" 
+                FontSize="60"
+                MaxLength="1"
+                Keyboard="Numeric"
+                TextChanged="OnHourEntryTensTextChanged" 
+                Unfocused="OnHourTensEntry_Unfocused" />
+            <Entry 
+                x:Name="entryHourUnits"
+                Text="0"
+                TextColor="Black" 
+                FontSize="60"
+                MaxLength="1"
+                Keyboard="Numeric"
+                TextChanged="OnHourEntryUnitsTextChanged" 
+                Unfocused="OnHourUnitsEntry_Unfocused" />
+            <Label 
+                Text=":" 
+                HorizontalTextAlignment="Center" 
+                TextColor="Black" 
+                FontSize="60"/>
+            <Entry   
+                x:Name="entryMinutesTens"   
+                Text="0"
+                TextColor="Black" 
+                FontSize="60"
+                MaxLength="1"
+                Keyboard="Numeric"
+                TextChanged="OnMinutesEntryTensTextChanged" 
+                Completed="OnMinutesEntryTensCompleted"
+                Unfocused="OnMinutesTensEntry_Unfocused" />
+            <Entry 
+                x:Name="entryMinutesUnits"   
+                Text="0"
+                TextColor="Black" 
+                FontSize="60"
+                MaxLength="1"
+                Keyboard="Numeric" 
+                Completed="OnMinutesUnitsEntryCompleted"
+                Unfocused="OnMinutesUnitsEntry_Unfocused" />
+        </StackLayout>
+
+
+        <!--     <Editor Grid.Row="1" Grid.Column="0" 
+                Grid.ColumnSpan="2"
+                Placeholder="Enter multi-line text here"
+                HeightRequest="10" />
+-->
+
+        <!-- Set alarm button -->
+        <Button x:Name="setAlarmButton"
+                Grid.Row="2" Grid.Column="0" 
+                Grid.ColumnSpan="2"
+                Text="Set Alarm Time"
+                TextColor="White" 
+                BackgroundColor="Purple"
+                Margin="40"
+                Clicked="OnSetAlarmButtonClicked"/>
+
+        <!-- Start button -->
+        <Button x:Name="startAlarmButton"
+                Grid.Row="3" Grid.Column="0" Text="Start"
+                TextColor="White" 
+                BackgroundColor="Green"
+                Margin="20"
+                Clicked="OnStartButtonClicked"/>
+
+        <!-- Stop button -->
+        <Button x:Name="stopAlarmButton"
+                Grid.Row="3" Grid.Column="1" Text="Stop"
+                TextColor="White" 
+                BackgroundColor="Red"
+                Margin="20"
+                Clicked="OnStopButtonClicked"/>
+
+        <Label  x:Name="lblTest"
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Text="Test Output" 
+                HorizontalTextAlignment="Center" 
+                TextColor="Black" 
+                FontSize="28"
+                />
+
+
+    </Grid>
+
+        <!--
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label 
+                Text="Welcome to Xamarin.Forms!" 
+                HorizontalTextAlignment="Center" 
+                TextColor="White" 
+                FontSize="36"
+                />
+        </Frame>
+        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
+        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
+        <Label FontSize="16" Padding="30,24,30,0">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Learn more at "/>
+                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </StackLayout>
+    -->
+
+</ContentPage>
