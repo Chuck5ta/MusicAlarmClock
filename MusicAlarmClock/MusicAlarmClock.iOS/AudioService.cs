@@ -11,6 +11,8 @@ namespace MusicAlarmClock.iOS
 {
     class AudioService: AudioInterface
 	{
+		AVAudioPlayer _player;
+
 		public AudioService()
 		{
 		}
@@ -20,7 +22,7 @@ namespace MusicAlarmClock.iOS
 			string sFilePath = NSBundle.MainBundle.PathForResource
 			(Path.GetFileNameWithoutExtension(fileName), Path.GetExtension(fileName));
 			var url = NSUrl.FromString(sFilePath);
-			var _player = AVAudioPlayer.FromUrl(url);
+			_player = AVAudioPlayer.FromUrl(url);
 	//		_player.Delegate = this;
 			_player.Volume = 100f;
 			_player.PrepareToPlay();
@@ -28,6 +30,11 @@ namespace MusicAlarmClock.iOS
 				_player = null;
 			};
 			_player.Play();
+		}
+
+		public void StopAudioFile()
+		{
+			_player.Stop();
 		}
 
 		public void Dispose()
