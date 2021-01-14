@@ -17,7 +17,7 @@ namespace MusicAlarmClock.iOS
 		{
 		}
 
-		public void PlayAudioFile(string fileName)
+		public bool PlayAudioFile(string fileName)
 		{
 			string sFilePath = NSBundle.MainBundle.PathForResource
 			(Path.GetFileNameWithoutExtension(fileName), Path.GetExtension(fileName));
@@ -30,6 +30,8 @@ namespace MusicAlarmClock.iOS
 				_player = null;
 			};
 			_player.Play();
+
+			return true;
 		}
 
 		public void StopAudioFile()

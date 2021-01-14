@@ -3,8 +3,8 @@
 namespace MusicAlarmClock
 {
     public interface AudioInterface
-    {        
-        void PlayAudioFile(string fileName);
+    {
+        bool PlayAudioFile(string fileName);
         void StopAudioFile();
     }
 }

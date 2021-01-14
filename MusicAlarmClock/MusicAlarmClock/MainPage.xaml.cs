@@ -185,7 +185,11 @@ namespace MusicAlarmClock
         public void playMusic()
         {
             //    CrossMediaManager.Current.Play("D:\\Projects\\APP Developer\\MusicAlarmClock\\MusicAlarmClock\\MusicAlarmClock\\MusicAlarmClock\\Sounds\\TestSound.mp3");
-            DependencyService.Get<AudioInterface>().PlayAudioFile("TestSound.mp3");
+            if (!DependencyService.Get<AudioInterface>().PlayAudioFile("TestSound.mp3"))
+                lblTest.Text = "No External storage found!";
+            else
+                lblTest.Text = "External storage found!";
+
         }
 
     }
