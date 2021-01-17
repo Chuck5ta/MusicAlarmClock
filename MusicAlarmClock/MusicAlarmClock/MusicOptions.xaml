@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicAlarmClock.MusicOptions">
+    
+    <ContentPage.Content>
+        
+        <StackLayout>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- checkbox then label -->
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    HorizontalTextAlignment="Center" 
+                    Text="Music Options" 
+                    TextColor="Black" 
+                    FontSize="28"
+                    Margin="10"
+                />
+
+                <CheckBox 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    HorizontalOptions="End"
+                    ScaleX="1.25"
+                    ScaleY="1.25"
+                    VerticalOptions="Start"
+                    Margin="2"
+                    IsChecked="false"
+                    CheckedChanged="OnPlaySingleTrackCheckedChanged"
+                />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1" 
+                    Grid.ColumnSpan="3"
+                    Text="Play Single track" 
+                    HorizontalTextAlignment="Left"
+                    TextColor="Black" 
+                    FontSize="25"
+                />
+
+                <CheckBox 
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    ScaleX="1.25"
+                    ScaleY="1.25"
+                    VerticalOptions="Start"
+                    Margin="2"
+                    IsChecked="false"
+                    HorizontalOptions="End"
+                    CheckedChanged="OnPlayMultipleTracksCheckedChanged"
+                />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Text="Play multiple tracks" 
+                    HorizontalTextAlignment="Left"
+                    TextColor="Black" 
+                    FontSize="25"
+                />
+
+                <CheckBox 
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    ScaleX="1.25"
+                    ScaleY="1.25"
+                    VerticalOptions="Start"
+                    Margin="2"
+                    IsChecked="true"
+                    HorizontalOptions="End"
+                    CheckedChanged="OnPlayAllTracksCheckedChanged"
+                />
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Text="Play all tracks" 
+                    HorizontalTextAlignment="Left"
+                    TextColor="Black" 
+                    FontSize="25"
+                />
+
+                <CheckBox 
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    ScaleX="1.25"
+                    ScaleY="1.25"
+                    VerticalOptions="Start"
+                    Margin="2"
+                    IsChecked="false"
+                    HorizontalOptions="End"
+                    CheckedChanged="OnPlayRandomTracksCheckedChanged"
+                />
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Text="Play random tracks" 
+                    HorizontalTextAlignment="Left" 
+                    TextColor="Black" 
+                    FontSize="25"
+                />
+
+                <CheckBox 
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    ScaleX="1.25"
+                    ScaleY="1.25"
+                    VerticalOptions="Start"
+                    Margin="2"
+                    IsChecked="true"
+                    HorizontalOptions="End"
+                    CheckedChanged="OnRepeatTracksCheckedChanged"
+                />
+                <Label
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Text="Repeat tracks" 
+                    HorizontalTextAlignment="Left"
+                    TextColor="Black" 
+                    FontSize="25"
+                />
+
+                <CheckBox 
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    ScaleX="1.25"
+                    ScaleY="1.25"
+                    VerticalOptions="Start"
+                    Margin="2"
+                    IsChecked="false"
+                    HorizontalOptions="End"
+                    CheckedChanged="OnIncreaseVolumeCheckedChanged"
+                />
+                <Label
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Text="Increase volume" 
+                    HorizontalTextAlignment="Left" 
+                    TextColor="Black" 
+                    FontSize="25"
+                />
+
+                <!-- Stop button -->
+                <Button x:Name="backButton"
+                    Grid.Row="9" 
+                    Grid.ColumnSpan="4"
+                    Text="Go to main page"
+                    TextColor="White"  
+                    FontSize="20"
+                    BackgroundColor="Purple"
+                    Clicked="OnBackButtonClicked"
+                />
+
+
+            </Grid>
+            
+        </StackLayout>
+        
+    </ContentPage.Content>
+    
+</ContentPage>

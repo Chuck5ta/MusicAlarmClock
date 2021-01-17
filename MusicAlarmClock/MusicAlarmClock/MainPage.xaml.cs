@@ -6,12 +6,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace MusicAlarmClock
 {
 
     public partial class MainPage : ContentPage
     {
+        private string path;
+
         private bool runTimer = true;
 
         DateTime localDate;
@@ -123,9 +126,29 @@ namespace MusicAlarmClock
                 entryMinutesUnits.Text = "0";
         }
 
-        void OnSetAlarmButtonClicked(object sender, EventArgs e)
+        void OnSelectMusicOptionsButtonClicked(object sender, EventArgs e)
         {
-            playMusic();
+            Application.Current.MainPage.Navigation.PushAsync(new MusicOptions());
+
+            /*
+            var path = DependencyService.Get<FileInterface>().GetExternalStoragePath();
+            Console.WriteLine("DEBUG - Path: " + path);
+
+            // Have the user select the music file
+            string[] listOfFiles = DependencyService.Get<FileInterface>().GetFileList(path);
+
+            if (listOfFiles == null)
+            {
+                Console.WriteLine("DEBUG Failed to load file list");
+                return;
+            }
+
+            // iterate through the list and write them to the log
+            foreach (string file in listOfFiles)
+                Console.WriteLine("DEBUG - File: " + file);
+
+            */
+            //       playMusic();
 
         }
 
@@ -168,7 +191,10 @@ namespace MusicAlarmClock
                         // Check the time
                         // Is it time to set the alarm off
                         if (localDate.Hour == alarmHour && localDate.Minute == alarmMinutes)
+                        {
                             lblTest.Text = "DING DING DING";
+                            playMusic();
+                        }
                     });
                     return true;
                 }

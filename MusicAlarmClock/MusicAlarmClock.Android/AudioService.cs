@@ -27,15 +27,6 @@ namespace MusicAlarmClock.Droid
 			var file = path + "/" + fileName;
 		    //	Android.Util.Log.Debug("_DEBUG", file);
 
-			// Is there an external storage?
-			bool isMounted = Environment.MediaMounted.Equals(Environment.ExternalStorageState);
-			Android.Util.Log.Debug("_DEBUG", "Mounted: " + isMounted);
-			if (!isMounted)
-            {
-				Android.Util.Log.Debug("_DEBUG", "ERROR: No external storage found! " + isMounted);
-				return false;
-			}
-
 			bool isReadonly = Environment.MediaMountedReadOnly.Equals(Environment.ExternalStorageState);
 			Android.Util.Log.Debug("_DEBUG", "Read Only: " + isReadonly);
 

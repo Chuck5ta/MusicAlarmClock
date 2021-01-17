@@ -10,7 +10,11 @@ namespace MusicAlarmClock
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage())
+            {
+                BackgroundColor = Color.Beige,
+                BarTextColor = Color.Black
+            };
         }
 
         protected override void OnStart()

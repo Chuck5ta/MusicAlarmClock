@@ -85,14 +85,14 @@
 -->
 
         <!-- Set alarm button -->
-        <Button x:Name="setAlarmButton"
+        <Button x:Name="selectMusicOptionsButton"
                 Grid.Row="2" Grid.Column="0" 
                 Grid.ColumnSpan="2"
-                Text="Set Alarm Time"
+                Text="Music Options"
                 TextColor="White" 
                 BackgroundColor="Purple"
                 Margin="40"
-                Clicked="OnSetAlarmButtonClicked"/>
+                Clicked="OnSelectMusicOptionsButtonClicked"/>
 
         <!-- Start button -->
         <Button x:Name="startAlarmButton"
