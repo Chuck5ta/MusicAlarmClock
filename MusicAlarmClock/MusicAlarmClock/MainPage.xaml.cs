@@ -10,17 +10,17 @@ using Xamarin.Essentials;
 
 namespace MusicAlarmClock
 {
-
     public partial class MainPage : ContentPage
     {
-        private string path;
-
         private bool runTimer = true;
 
         DateTime localDate;
 
         int alarmHour = 0;
         int alarmMinutes = 0;
+
+        MusicOptions musicOptions;
+
 
         public MainPage()
         {
@@ -128,7 +128,13 @@ namespace MusicAlarmClock
 
         void OnSelectMusicOptionsButtonClicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage.Navigation.PushAsync(new MusicOptions());
+            // Need to not create a new MusicOptions page, if one already exists!!!!
+            if (musicOptions == null) // have we created the page already
+            {
+                musicOptions = new MusicOptions();
+            }
+
+            Application.Current.MainPage.Navigation.PushAsync(musicOptions);
 
             /*
             var path = DependencyService.Get<FileInterface>().GetExternalStoragePath();
@@ -154,6 +160,8 @@ namespace MusicAlarmClock
 
         void OnStartButtonClicked(object sender, EventArgs e)
         {
+            DiscJockey();
+            /*
             string sAlarmHour = "" + entryHourTens.Text + entryHourUnits.Text;
             alarmHour = Convert.ToInt32(sAlarmHour);
             string sAlarmMins = "" + entryMinutesTens.Text + entryMinutesUnits.Text;
@@ -164,6 +172,8 @@ namespace MusicAlarmClock
 
             runTimer = true;
             RunTimer();
+
+            */
 
         }
 
@@ -180,20 +190,19 @@ namespace MusicAlarmClock
 
         private void RunTimer()
         {
-            Device.StartTimer(new TimeSpan(0, 0, 1), () =>
+            Device.StartTimer(new TimeSpan(0, 0, 5), () =>
             {
-                // do something every 60 seconds
+                // do something every 5 seconds
                 if (runTimer)
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        localDate = DateTime.Now;
                         // Check the time
                         // Is it time to set the alarm off
                         if (localDate.Hour == alarmHour && localDate.Minute == alarmMinutes)
                         {
                             lblTest.Text = "DING DING DING";
-                            playMusic();
+                            DiscJockey();
                         }
                     });
                     return true;
@@ -203,19 +212,57 @@ namespace MusicAlarmClock
             });
         }
 
-        private void entryMinutesUnits_Unfocused(object sender, FocusEventArgs e)
+        bool djPlay = true;
+        private void DiscJockey()
         {
-
+            int totalSongs = musicOptions.pickMultipleSongs.multipleSongList.Count;
+            int index = 0;
+            playSong(index);
+            index++;
+            Device.StartTimer(new TimeSpan(0, 0, 10), () =>
+            {
+                if (djPlay) // check if song is actually playing - have playSongs set a global
+                {
+                    // do something every 60 seconds
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        if (index < totalSongs && !playingSong)
+                        {
+                            // play next song
+                            playSong(index);
+                            index++;
+                //            Console.WriteLine("AHHHHHHHHHHHHHHHHHHHHHH");
+                        }
+                        if (index == totalSongs)
+                            djPlay = false; // stop the DJ
+                    });
+                    return true; // runs again, or false to stop
+                }
+                return false; // stop the timer
+            });
         }
 
-        public void playMusic()
-        {
-            //    CrossMediaManager.Current.Play("D:\\Projects\\APP Developer\\MusicAlarmClock\\MusicAlarmClock\\MusicAlarmClock\\MusicAlarmClock\\Sounds\\TestSound.mp3");
-            if (!DependencyService.Get<AudioInterface>().PlayAudioFile("TestSound.mp3"))
-                lblTest.Text = "No External storage found!";
-            else
-                lblTest.Text = "External storage found!";
 
+        bool playingSong = false;
+        private void playSong(int index)
+        {
+            playingSong = true;
+    //        Console.WriteLine("AHHHHHHHHHHHHHHHHHHHHHH");
+            int duration = 4 + (DependencyService.Get<AudioInterface>().PlayAudioFile(musicOptions.pickMultipleSongs.multipleSongList[index]) / 1000);
+    //        Console.WriteLine("BOOT - DURATION: " + duration);
+            Device.StartTimer(new TimeSpan(0, 0, duration), () =>
+            {
+                if (playingSong)
+                {
+                    // do something every 60 seconds
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        playingSong = false;
+                    });
+                    return true; // runs again, or false to stop
+                }
+                return false; // stop the timer
+            });
         }
 
     }

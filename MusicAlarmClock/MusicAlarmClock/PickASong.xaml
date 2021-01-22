@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicAlarmClock.PickASong">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label  x:Name="titleLabel"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,20,0,20"
+                    Text="Pick a Song" 
+                    HorizontalTextAlignment="Center" 
+                    TextColor="Black" 
+                    FontSize="28"
+                    />
+
+                <StackLayout Orientation="Vertical"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="StartAndExpand"                             
+                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                    
+                    <ListView x:Name="MusicFilesList"
+                        Margin="30,0,30,30"
+                        BackgroundColor="AliceBlue"
+                        ItemsSource="{Binding MusicFileNames}"                               
+                        ItemSelected="OnListViewItemSelected"
+                    />
+
+                </StackLayout>
+
+                <!-- Stop button -->
+                <Button x:Name="backButton"
+                    Grid.Row="2" 
+                    Grid.ColumnSpan="2"
+                    Margin="0,20,0,0"
+                    Text="Go back"
+                    TextColor="White"  
+                    FontSize="20"
+                    BackgroundColor="Purple"
+                    Clicked="OnBackButtonClicked"
+                />
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

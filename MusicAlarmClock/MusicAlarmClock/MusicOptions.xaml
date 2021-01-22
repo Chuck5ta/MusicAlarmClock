@@ -170,7 +170,7 @@
                 <Button x:Name="backButton"
                     Grid.Row="9" 
                     Grid.ColumnSpan="4"
-                    Text="Go to main page"
+                    Text="Go back"
                     TextColor="White"  
                     FontSize="20"
                     BackgroundColor="Purple"
