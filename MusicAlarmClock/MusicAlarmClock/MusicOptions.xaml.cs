@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,7 +12,6 @@ namespace MusicAlarmClock
     public partial class MusicOptions : ContentPage
     {
         // Content pages
-        public PickASong pickASong;
         public PickMultipleSongs pickMultipleSongs;
 
         public MusicOptions()
@@ -21,18 +19,7 @@ namespace MusicAlarmClock
             InitializeComponent();
         }
 
-        void OnPlaySingleTrackCheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            // Need to not create a new page object, if one already exists!!!!
-            if (pickASong == null) // have we created the page already
-            {
-                pickASong = new PickASong(); // create a new PickASong content page
-            }
-
-            Application.Current.MainPage.Navigation.PushAsync(pickASong);
-        }
-
-        void OnPlayMultipleTracksCheckedChanged(object sender, CheckedChangedEventArgs e)
+        void OnSelectSongsButtonClicked(object sender, EventArgs e)
         {
             // Need to not create a new page object, if one already exists!!!!
             if (pickMultipleSongs == null) // have we created the page already
@@ -55,6 +42,9 @@ namespace MusicAlarmClock
         {
         }
 
+        /*
+         * Incrementally increases the volume
+         */
         void OnIncreaseVolumeCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
         }

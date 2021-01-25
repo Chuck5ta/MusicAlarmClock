@@ -10,15 +10,15 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="20"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="80"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="60"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -37,49 +37,20 @@
                     Text="Music Options" 
                     TextColor="Black" 
                     FontSize="28"
-                    Margin="10"
+                    Margin="0,20,0,0"
                 />
 
-                <CheckBox 
-                    Grid.Row="2"
+                <!-- Select Songs button -->
+                <Button x:Name="selectSongsButton"
+                    Grid.Row="2" 
                     Grid.Column="0"
-                    HorizontalOptions="End"
-                    ScaleX="1.25"
-                    ScaleY="1.25"
-                    VerticalOptions="Start"
-                    Margin="2"
-                    IsChecked="false"
-                    CheckedChanged="OnPlaySingleTrackCheckedChanged"
-                />
-                <Label
-                    Grid.Row="2"
-                    Grid.Column="1" 
-                    Grid.ColumnSpan="3"
-                    Text="Play Single track" 
-                    HorizontalTextAlignment="Left"
-                    TextColor="Black" 
-                    FontSize="25"
-                />
-
-                <CheckBox 
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    ScaleX="1.25"
-                    ScaleY="1.25"
-                    VerticalOptions="Start"
-                    Margin="2"
-                    IsChecked="false"
-                    HorizontalOptions="End"
-                    CheckedChanged="OnPlayMultipleTracksCheckedChanged"
-                />
-                <Label
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    Text="Play multiple tracks" 
-                    HorizontalTextAlignment="Left"
-                    TextColor="Black" 
-                    FontSize="25"
+                    Grid.ColumnSpan="4"
+                    Margin="20,20,20,0"
+                    Text="Select songs"
+                    TextColor="White"  
+                    FontSize="20"
+                    BackgroundColor="Blue"
+                    Clicked="OnSelectSongsButtonClicked"
                 />
 
                 <CheckBox 

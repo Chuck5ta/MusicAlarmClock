@@ -213,6 +213,7 @@ namespace MusicAlarmClock
         }
 
         bool djPlay = true;
+        bool playingSong = false;
         private void DiscJockey()
         {
             int totalSongs = musicOptions.pickMultipleSongs.multipleSongList.Count;
@@ -242,17 +243,17 @@ namespace MusicAlarmClock
             });
         }
 
-
-        bool playingSong = false;
         private void playSong(int index)
         {
             playingSong = true;
     //        Console.WriteLine("AHHHHHHHHHHHHHHHHHHHHHH");
             int duration = 4 + (DependencyService.Get<AudioInterface>().PlayAudioFile(musicOptions.pickMultipleSongs.multipleSongList[index]) / 1000);
-    //        Console.WriteLine("BOOT - DURATION: " + duration);
+            Console.WriteLine("BOOT - SONG: " + musicOptions.pickMultipleSongs.multipleSongList[index]);
+            Console.WriteLine("BOOT - SONG DURATION: " + duration);
             Device.StartTimer(new TimeSpan(0, 0, duration), () =>
             {
-                if (playingSong)
+                playingSong = false;
+          /*      if (playingSong)
                 {
                     // do something every 60 seconds
                     Device.BeginInvokeOnMainThread(() =>
@@ -260,7 +261,7 @@ namespace MusicAlarmClock
                         playingSong = false;
                     });
                     return true; // runs again, or false to stop
-                }
+                } */
                 return false; // stop the timer
             });
         }
