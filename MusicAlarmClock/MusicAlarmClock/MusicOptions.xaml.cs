@@ -34,6 +34,8 @@ namespace MusicAlarmClock
 
         void OnPlayAllTracksCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
+            // disable Select Songs button
+            selectSongsButton.IsEnabled = !selectSongsButton.IsEnabled;
         }
 
         void OnPlayRandomTracksCheckedChanged(object sender, CheckedChangedEventArgs e)

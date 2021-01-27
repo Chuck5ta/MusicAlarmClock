@@ -50,6 +50,7 @@
                     TextColor="White"  
                     FontSize="20"
                     BackgroundColor="Blue"
+                    IsEnabled="true"
                     Clicked="OnSelectSongsButtonClicked"
                 />
 
@@ -60,7 +61,7 @@
                     ScaleY="1.25"
                     VerticalOptions="Start"
                     Margin="2"
-                    IsChecked="true"
+                    IsChecked="false"
                     HorizontalOptions="End"
                     CheckedChanged="OnPlayAllTracksCheckedChanged"
                 />
