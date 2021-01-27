@@ -212,14 +212,50 @@ namespace MusicAlarmClock
             });
         }
 
+        /*
+         * This is used when the option for playing the songs randmonly is picked
+         */
+        public int GetRandomSong(int totalSongs)
+        {
+            Random song = new Random();
+
+            return song.Next(totalSongs-1);
+        }
+
         bool djPlay = true;
         bool playingSong = false;
         private void DiscJockey()
         {
             int totalSongs = musicOptions.pickMultipleSongs.multipleSongList.Count;
+
+            // Decide on how the tracks are to be played
+            // in sequence
+            // random
+            // repeat
+
+
+            Console.WriteLine("-----======= Songs in the list START =======-----");
+            foreach (var song in musicOptions.pickMultipleSongs.multipleSongList)
+            {
+                Console.WriteLine("Song: " + song);
+            }
+            Console.WriteLine("-----======= Songs in the list END =======-----");
+
+
+
             int index = 0;
-            playSong(index);
-            index++;
+            // If random, then pick a random song (index)
+            if (musicOptions.playRandomSong)
+            {
+                index = GetRandomSong(totalSongs);
+                playSong(index);
+            }
+            else
+            {
+                playSong(index);
+                index++;
+            }
+
             Device.StartTimer(new TimeSpan(0, 0, 10), () =>
             {
                 if (djPlay) // check if song is actually playing - have playSongs set a global
@@ -229,10 +265,17 @@ namespace MusicAlarmClock
                     {
                         if (index < totalSongs && !playingSong)
                         {
-                            // play next song
-                            playSong(index);
-                            index++;
-                //            Console.WriteLine("AHHHHHHHHHHHHHHHHHHHHHH");
+                            // If random, then pick a random song (index)
+                            if (musicOptions.playRandomSong)
+                            {
+                                index = GetRandomSong(totalSongs);
+                                playSong(index);
+                            }
+                            else
+                            {
+                                playSong(index);
+                                index++;
+                            }
                         }
                         if (index == totalSongs)
                             djPlay = false; // stop the DJ
@@ -253,15 +296,6 @@ namespace MusicAlarmClock
             Device.StartTimer(new TimeSpan(0, 0, duration), () =>
             {
                 playingSong = false;
-          /*      if (playingSong)
-                {
-                    // do something every 60 seconds
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        playingSong = false;
-                    });
-                    return true; // runs again, or false to stop
-                } */
                 return false; // stop the timer
             });
         }

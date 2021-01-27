@@ -74,7 +74,7 @@
                     FontSize="25"
                 />
 
-                <CheckBox 
+                <CheckBox x:Name="cbRandomSongs"
                     Grid.Row="5"
                     Grid.Column="0"
                     ScaleX="1.25"

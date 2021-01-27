@@ -14,6 +14,8 @@ namespace MusicAlarmClock
         // Content pages
         public PickMultipleSongs pickMultipleSongs;
 
+        public bool playRandomSong = false;
+
         public MusicOptions()
         {
             InitializeComponent();
@@ -36,6 +38,7 @@ namespace MusicAlarmClock
 
         void OnPlayRandomTracksCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
+            playRandomSong = !playRandomSong;
         }
 
         void OnRepeatTracksCheckedChanged(object sender, CheckedChangedEventArgs e)
